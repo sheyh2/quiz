@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -14,6 +15,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $email
  * @property string $password
  * @property string $token
+ * @property bool $status
  * @property string $created_at
  * @property string $updated_at
  */
@@ -26,12 +28,19 @@ class User extends Model
         'email',
         'password',
         'token',
+        'status',
     ];
 
     protected $hidden = [
         'password',
         'token',
     ];
+
+    public static function query(): Builder
+    {
+        return parent::query()
+            ->where('status', '=', true);
+    }
 
     public function getUserByToken(string $token)
     {
