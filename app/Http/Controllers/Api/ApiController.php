@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Core\Base\ConstKeys;
 use App\Core\Cache\UserCache;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
@@ -18,21 +19,24 @@ class ApiController
     public $status = true;
     public $code = 200;
     public $message = 'ok';
+    public $meta = null;
 
     /**
-     * @param array $resource
+     * @param mixed $resource
      * @return JsonResponse
      */
-    public function composeJson(array $resource = []): JsonResponse
+    public function composeJson($resource = []): JsonResponse
     {
         $data = [
-            'status' =>  $this->status,
-            'code' => $this->code,
+            ConstKeys::STATUS =>  $this->status,
+            ConstKeys::CODE => $this->code,
         ];
         if ($this->code !== 200) {
-            $data['errors'] = [$this->message];
+            $data[ConstKeys::ERRORS] = [$this->message];
         }
-        $data['data'] = $resource;
+        $data[ConstKeys::MESSAGE] = $this->message;
+        $data[ConstKeys::DATA] = $resource;
+        $data[ConstKeys::META] = $this->meta;
 
         return new JsonResponse($data, $this->code);
     }

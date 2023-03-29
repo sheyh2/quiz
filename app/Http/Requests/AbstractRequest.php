@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Core\Base\ConstKeys;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -26,9 +27,9 @@ class AbstractRequest extends FormRequest
     {
         throw new HttpResponseException(
             new JsonResponse([
-                'status' => false,
-                'code' => 422,
-                'errors' => $validator->errors()->all()
+                ConstKeys::STATUS => false,
+                ConstKeys::CODE => 422,
+                ConstKeys::ERRORS => $validator->errors()->all(),ConstKeys::DATA => [],
             ], 422)
         );
     }
