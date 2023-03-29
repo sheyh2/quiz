@@ -21,6 +21,7 @@ class Authenticate
             throw new HttpResponseException(new JsonResponse([
                 'status' => false,
                 'code' => 401,
+                'errors' => ['Unauthorized'],
                 'data' => []
             ], 401));
         }
