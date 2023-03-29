@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware\Api;
 
+use App\Core\Base\ConstKeys;
 use App\Core\Cache\UserCache;
 use Closure;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -19,10 +20,10 @@ class Authenticate
     {
         if (is_null(UserCache::getInstance()->getUser($request->bearerToken()))) {
             throw new HttpResponseException(new JsonResponse([
-                'status' => false,
-                'code' => 401,
-                'errors' => ['Unauthorized'],
-                'data' => []
+                ConstKeys::STATUS => false,
+                ConstKeys::CODE => 401,
+                ConstKeys::ERRORS => ['Unauthorized'],
+                ConstKeys::DATA => []
             ], 401));
         }
 
