@@ -2,43 +2,126 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+/**
+ * class USer.php
+ * @package App\Models
+ *
+ * @property int $id
+ * @property string $name
+ * @property string $surname
+ * @property string $email
+ * @property string $password
+ * @property string $token
+ * @property string $created_at
+ * @property string $updated_at
+ */
+class User extends Model
 {
-    use HasApiTokens, HasFactory, Notifiable;
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array<int, string>
-     */
+    protected $table = 'users';
     protected $fillable = [
         'name',
+        'surname',
         'email',
         'password',
+        'token',
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array<int, string>
-     */
     protected $hidden = [
         'password',
-        'remember_token',
+        'token',
     ];
 
+    public function getUserByToken(string $token)
+    {
+        return User::query()
+            ->where('token', '=', $token)
+            ->first();
+    }
+
+    public function getUser(string $email)
+    {
+        return User::query()
+            ->where('email', '=', $email)
+            ->first();
+    }
+
+    public function create(array $items)
+    {
+        return User::query()->create($items);
+    }
+
+    // Getters
+
     /**
-     * The attributes that should be cast.
-     *
-     * @var array<string, string>
+     * @return int
      */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSurname(): string
+    {
+        return $this->surname;
+    }
+
+    /**
+     * @return string
+     */
+    public function getEmail(): string
+    {
+        return $this->email;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    /**
+     * @return string
+     */
+    public function getToken(): string
+    {
+        return $this->token;
+    }
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt(): string
+    {
+        return $this->created_at;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUpdatedAt(): string
+    {
+        return $this->updated_at;
+    }
+
+    // Instance
+
+    public static function getInstance(): User
+    {
+        return new static();
+    }
 }
