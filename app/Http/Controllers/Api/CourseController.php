@@ -70,4 +70,28 @@ class CourseController extends ApiController
 
         return $this->composeJson(new CourseResource($course));
     }
+
+    public function activityToggle($id)
+    {
+        /** @var Course|null $course */
+        $course = Course::getInstance()->getById($id);
+
+        if (is_null($course)) {
+            $this->status = false;
+            $this->code = 404;
+            $this->message = 'Lesson not found!';
+
+            return $this->composeJson();
+        }
+
+        $course->update([
+            'is_active' => !$course->isActive()
+        ]);
+        return $this->composeJson(new CourseResource($course));
+    }
+
+    public function destroy($id)
+    {
+        //
+    }
 }

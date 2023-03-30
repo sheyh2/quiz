@@ -16,17 +16,23 @@ Route::middleware('api.auth')->group(function () {
     Route::prefix('course')->group(function (Router $router) {
         $router->get('get-list', [CourseController::class, 'getList']);
         $router->get('show/{id}', [CourseController::class, 'show']);
-        $router->post('store', [CourseController::class, 'store']);
+
         $router->put('update/{id}', [CourseController::class, 'update']);
+        $router->post('activity-toggle/{id}', [CourseController::class, 'activityToggle']);
+
+        $router->post('store', [CourseController::class, 'store']);
+        $router->post('destroy', [CourseController::class, 'destroy']);
     });
 
     Route::prefix('lesson')->group(function (Router $router) {
         $router->get('get-list', [LessonController::class, 'getList']);
         $router->get('show/{id}', [LessonController::class, 'show']);
-        $router->post('store', [LessonController::class, 'store']);
+
         $router->put('update/{id}', [LessonController::class, 'update']);
-        $router->delete('destroy/{id}', [LessonController::class, 'destroy']);
         $router->post('activity-toggle/{id}', [LessonController::class, 'activityToggle']);
+
+        $router->post('store', [LessonController::class, 'store']);
+        $router->delete('destroy/{id}', [LessonController::class, 'destroy']);
     });
 
     Route::prefix('file')->group(function (Router $router) {

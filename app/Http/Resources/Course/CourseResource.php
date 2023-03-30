@@ -15,7 +15,9 @@ class CourseResource extends JsonResource
         return [
             'id' => $course->getId(),
             'name' => $course->getName(),
-            'is_active' => $course->isActive()
+            'is_active' => $course->isActive(),
+            'created_at' => $course->getCreatedAt(),
+            'updated_at' => $course->getUpdatedAt(),
         ];
     }
 }
