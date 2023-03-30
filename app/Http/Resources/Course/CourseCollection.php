@@ -8,11 +8,7 @@ use Illuminate\Support\Collection;
 
 class CourseCollection extends ResourceCollection
 {
-    /**
-     * @param $request
-     * @return Collection
-     */
-    public function toArray($request)
+    public function toArray($request): Collection
     {
         return $this->collection->transform(function (CourseResource $courseResource) {
             /** @var Course $course */
@@ -22,6 +18,8 @@ class CourseCollection extends ResourceCollection
                 'id' => $course->getId(),
                 'name' => $course->getName(),
                 'is_active' => $course->isActive(),
+                'created_at' => $course->getCreatedAt(),
+                'updated_at' => $course->getUpdatedAt(),
             ];
         });
     }
