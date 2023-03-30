@@ -2,11 +2,11 @@
 
 namespace App\Http\Resources\Course;
 
-use App\Http\Resources\AbstractCollection;
 use App\Models\Course;
+use Illuminate\Http\Resources\Json\ResourceCollection;
 use Illuminate\Support\Collection;
 
-class CourseCollection extends AbstractCollection
+class CourseCollection extends ResourceCollection
 {
     /**
      * @param $request
