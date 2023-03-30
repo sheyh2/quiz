@@ -33,8 +33,9 @@ class ApiController
         ];
         if ($this->code !== 200) {
             $data[ConstKeys::ERRORS] = [$this->message];
+        } else {
+            $data[ConstKeys::MESSAGE] = $this->message;
         }
-        $data[ConstKeys::MESSAGE] = $this->message;
         $data[ConstKeys::DATA] = $resource;
         $data[ConstKeys::META] = $this->meta;
 
