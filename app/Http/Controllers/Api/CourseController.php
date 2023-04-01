@@ -13,7 +13,7 @@ class CourseController extends ApiController
 {
     public function getList(Request $request)
     {
-        $courses = Course::getInstance()->paginate($request->input('per_page', 18));
+        $courses = Course::getInstance()->paginate($request->input('perPage', 18));
         $this->meta = [
             ConstKeys::PER_PAGE => $courses->perPage(),
             ConstKeys::CURRENT_PAGE => $courses->currentPage(),
@@ -42,9 +42,8 @@ class CourseController extends ApiController
 
     public function store(ActionRequest $request)
     {
-        $course = Course::getInstance()->store([
+        $course = Course::getInstance()->insertItem([
             'name' => $request->input('name'),
-            'is_active' => $request->input('is_active'),
         ]);
 
         return $this->composeJson(new CourseResource($course));
@@ -53,7 +52,8 @@ class CourseController extends ApiController
     public function update($id, ActionRequest $request)
     {
         /** @var Course|null $course */
-        $course = Course::getInstance()->getById($id);
+        $courseInstance = Course::getInstance();
+        $course = $courseInstance->getById($id);
 
         if (is_null($course)) {
             $this->status = false;
@@ -63,9 +63,8 @@ class CourseController extends ApiController
             return $this->composeJson();
         }
 
-        $course->update([
+        $courseInstance->updateItem($course, [
             'name' => $request->input('name'),
-            'is_active' => $request->input('is_active'),
         ]);
 
         return $this->composeJson(new CourseResource($course));

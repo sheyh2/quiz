@@ -37,9 +37,14 @@ class Course extends Model
             ->first();
     }
 
-    public function store(array $items)
+    public function insertItem(array $items)
     {
         return Course::query()->create($items);
+    }
+
+    public function updateItem(Course $course, array $items)
+    {
+        return $course->create($items);
     }
 
     // Getters
