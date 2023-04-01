@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
@@ -18,6 +19,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property string $created_at
  * @property string $updated_at
  *
+ * @property Course $course
  * @property Collection $files
  */
 class Lesson extends Model
@@ -49,12 +51,17 @@ class Lesson extends Model
             ->first();
     }
 
-    public function store(array $items)
+    public function insertItem(array $items)
     {
         return Lesson::query()->create($items);
     }
 
-    public function duplicate(int $courseId, string $name)
+    public function updateItem(Lesson $lesson, array $items)
+    {
+        return $lesson->create($items);
+    }
+
+    public function duplicate(int $courseId, string $name): bool
     {
         return Lesson::query()
             ->where('course_id', '=', $courseId)
@@ -63,6 +70,11 @@ class Lesson extends Model
     }
 
     // Relations
+
+    public function course(): BelongsTo
+    {
+        return $this->belongsTo(Course::class, 'course_id','id');
+    }
 
     public function files(): HasMany
     {

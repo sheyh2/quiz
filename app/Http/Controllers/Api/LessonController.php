@@ -18,7 +18,7 @@ class LessonController extends ApiController
     {
         $lessons = Lesson::getInstance()
             ->paginate(
-                $request->input('per_page', 18),
+                $request->input('perPage', 18),
                 $request->input('filter', []),
             );
         $this->meta = [
@@ -60,7 +60,7 @@ class LessonController extends ApiController
             return $this->composeJson();
         }
 
-        $lesson = $lessonInstance->store([
+        $lesson = $lessonInstance->insertItem([
             'name' => $request->input('name'),
             'course_id' => $request->input('courseId'),
         ]);
@@ -91,7 +91,7 @@ class LessonController extends ApiController
             return $this->composeJson();
         }
 
-        $lesson->update([
+        $lessonInstance->updateItem($lesson, [
             'name' => $request->input('name'),
         ]);
 
@@ -114,7 +114,7 @@ class LessonController extends ApiController
         $lesson->update([
             'is_active' => !$lesson->isActive()
         ]);
-        return $this->composeJson(new LessonResource($lesson));
+        return $this->composeJson();
     }
 
     public function destroy($id)
