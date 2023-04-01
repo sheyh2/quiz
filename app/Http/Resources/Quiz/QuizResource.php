@@ -7,11 +7,7 @@ use Illuminate\Http\Resources\Json\JsonResource;
 
 class QuizResource extends JsonResource
 {
-    /**
-     * @param $request
-     * @return array
-     */
-    public function toArray($request)
+    public function toArray($request): array
     {
         /** @var Quiz $quiz */
         $quiz = $this->resource;
@@ -19,10 +15,6 @@ class QuizResource extends JsonResource
         return [
             'id' => $quiz->getId(),
             'name' => $quiz->getName(),
-            'course' => $quiz->getCourseName(),
-            'lesson' => $quiz->getLessonName(),
-            'create_at' => $quiz->getCreatedAt(),
-            'updated_at' => $quiz->getUpdatedAt(),
         ];
     }
 }
