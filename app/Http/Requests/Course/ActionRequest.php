@@ -25,7 +25,6 @@ class ActionRequest extends AbstractRequest
     {
         return [
             'name' => 'required',
-            'is_active' => 'required|bool',
         ];
     }
 }
