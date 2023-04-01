@@ -48,7 +48,7 @@ class File extends Model
             ->first();
     }
 
-    public function store(array $items)
+    public function insertItem(array $items)
     {
         return File::query()->create($items);
     }

@@ -36,7 +36,7 @@ class FileController extends ApiController
 
             /** @var File $file */
             $fileInstance = File::getInstance();
-            $file = $fileInstance->store([
+            $file = $fileInstance->insertItem([
                 'fileable_id' => $request->input('fileableId'),
                 'fileable_type' => $request->input('fileableType'),
                 'path' => $this->paths[$request->input('fileableType')],
