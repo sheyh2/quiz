@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\File\FileRequest;
 use App\Http\Requests\File\StoreRequest;
 use App\Http\Resources\File\FileCollection;
 use App\Http\Resources\File\FileResource;
 use App\Models\File;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\DB;
 
