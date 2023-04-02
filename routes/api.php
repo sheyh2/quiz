@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\Question\QuestionController;
 use App\Http\Controllers\Api\QuizController;
 use App\Http\Controllers\AuthController;
 use Illuminate\Routing\Router;
@@ -22,7 +23,7 @@ Route::middleware('api.auth')->group(function () {
         $router->post('activity-toggle/{id}', [CourseController::class, 'activityToggle']);
 
         $router->post('store', [CourseController::class, 'store']);
-        $router->post('destroy', [CourseController::class, 'destroy']);
+        $router->delete('destroy', [CourseController::class, 'destroy']);
     });
 
     Route::prefix('lesson')->group(function (Router $router) {
@@ -50,6 +51,15 @@ Route::middleware('api.auth')->group(function () {
         $router->post('activity-toggle/{id}', [QuizController::class, 'activityToggle']);
 
         $router->post('store', [QuizController::class, 'store']);
-        $router->post('destroy', [QuizController::class, 'destroy']);
+        $router->delete('destroy', [QuizController::class, 'destroy']);
+    });
+
+    Route::prefix('question')->group(function (Router $router) {
+        $router->get('get-list', [QuestionController::class, 'getList']);
+        $router->get('show/{id}', [QuestionController::class, 'show']);
+
+        $router->put('update/{id}', [QuestionController::class, 'update']);
+        $router->post('store', [QuestionController::class, 'store']);
+        $router->delete('destroy/{id}', [QuestionController::class, 'destroy']);
     });
 });
