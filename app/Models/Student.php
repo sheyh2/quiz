@@ -31,6 +31,28 @@ class Student extends Model
         'is_blocked',
     ];
 
+    public function paginate(int $items, array $filter): LengthAwarePaginator
+    {
+        $studentQuery = Student::query();
+
+        if (isset($filter['name'])) {
+            $studentQuery = $studentQuery
+                ->where('name', 'like', '%'.$filter['name'].'%')
+                ->orWhere('surname', 'like', '%'.$filter['name'].'%');
+        }
+
+        return $studentQuery
+            ->orderBy('id')
+            ->paginate($items);
+    }
+
+    public function getById(int $id)
+    {
+        return Student::query()
+            ->whereKey($id)
+            ->first();
+    }
+
     // Relations
 
     public function result(): HasOne
@@ -75,7 +97,7 @@ class Student extends Model
     /**
      * @return bool
      */
-    public function isIsBlocked(): bool
+    public function isBlocked(): bool
     {
         return $this->is_blocked;
     }

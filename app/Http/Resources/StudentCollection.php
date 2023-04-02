@@ -10,6 +10,16 @@ class StudentCollection extends ResourceCollection
 {
     public function toArray($request): Collection
     {
-        return 0;
+        return $this->collection->transform(function (Student $student) {
+            return [
+                'id' => $student->getId(),
+                'name' => $student->getName(),
+                'surname' => $student->getSurname(),
+                'email' => $student->getEmail(),
+                'is_blocked' => $student->isBlocked(),
+                'created_at' => $student->getCreatedAt(),
+                'updated_at' => $student->getUpdatedAt(),
+            ];
+        });
     }
 }
