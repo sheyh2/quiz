@@ -1,12 +1,13 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\LessonController;
 use App\Http\Controllers\Api\Question\QuestionController;
 use App\Http\Controllers\Api\QuizController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\Result\ResultController;
+use App\Http\Controllers\Api\Result\ResultController;
+use App\Http\Controllers\Api\StudentController;
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 
@@ -66,5 +67,10 @@ Route::middleware('api.auth')->group(function () {
 
     Route::prefix('result')->group(function (Router $router) {
         $router->get('/get-list', [ResultController::class, 'getList']);
+    });
+
+    Route::prefix('student')->group(function (Router $router) {
+        $router->get('/get-list', [StudentController::class, 'getList']);
+        $router->post('/activity-toggle/{id}', [StudentController::class, 'activityToggle']);
     });
 });

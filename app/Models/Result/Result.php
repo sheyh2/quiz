@@ -28,20 +28,20 @@ class Result extends Model
 
     public function paginate(int $items, array $filter): LengthAwarePaginator
     {
-        $resultQuery = Student::query()
+        $studentQuery = Student::query()
             ->join('results', 'results.student_id', '=', 'students.id');
 
         if (isset($filter['quizId'])) {
-            $resultQuery = $resultQuery
+            $studentQuery = $studentQuery
                 ->where('results.quiz_id', '=', $filter['quizId']);
         }
 
         if (isset($filter['name'])) {
-            $resultQuery = $resultQuery
+            $studentQuery = $studentQuery
                 ->whereRaw('("students"."name" like \'%'.$filter['name'].'%\' or "students"."surname" like \'%'.$filter['name'].'%\')');
         }
 
-        return $resultQuery
+        return $studentQuery
             ->distinct()
             ->select('students.*')
             ->paginate($items);

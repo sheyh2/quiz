@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Result;
+namespace App\Http\Controllers\Api\Result;
 
 use App\Core\Base\ConstKeys;
 use App\Http\Controllers\Api\ApiController;
