@@ -114,7 +114,19 @@ class QuestionController extends ApiController
                 ];
             }
 
-            Answer::getInstance()->updateItems($question->answers, $items);
+            $answers = clone $question->answers;
+            $currentItems = $answers->transform(function (Answer $answer) {
+                return [
+                    'question_id' => $answer->getQuestionId(),
+                    'answer' => $answer->getAnswer(),
+                    'is_correct' => $answer->isCorrect()
+                ];
+            })->toArray();
+
+            if ($currentItems !== $items) {
+                $question->answers()->delete();
+                Answer::getInstance()->insertItems($items);
+            }
 
             DB::commit();
             return $this->composeJson(new QuestionResource($question));
