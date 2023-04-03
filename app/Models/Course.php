@@ -42,9 +42,9 @@ class Course extends Model
         return Course::query()->create($items);
     }
 
-    public function updateItem(Course $course, array $items)
+    public function updateItem(Course $course, array $items): bool
     {
-        return $course->create($items);
+        return $course->update($items);
     }
 
     // Getters
