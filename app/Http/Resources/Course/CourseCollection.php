@@ -18,6 +18,7 @@ class CourseCollection extends ResourceCollection
                 'id' => $course->getId(),
                 'name' => $course->getName(),
                 'is_active' => $course->isActive(),
+                'lesson_quantity' => $course->lessons->count(),
                 'created_at' => $course->getCreatedAt(),
                 'updated_at' => $course->getUpdatedAt(),
             ];

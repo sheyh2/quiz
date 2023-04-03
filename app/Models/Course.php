@@ -3,7 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Contracts\Pagination\LengthAwarePaginator;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * class Course.php
@@ -14,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property bool $is_active
  * @property string $created_at
  * @property string $updated_at
+ *
+ * @property Collection $lessons
  */
 class Course extends Model
 {
@@ -51,6 +55,13 @@ class Course extends Model
     public function updateItem(Course $course, array $items): bool
     {
         return $course->update($items);
+    }
+
+    // Related
+
+    public function lessons(): HasMany
+    {
+        return $this->hasMany(Lesson::class, 'course_id', 'id');
     }
 
     // Getters
