@@ -23,9 +23,15 @@ class Course extends Model
         'is_active',
     ];
 
-    public function paginate(int $perPage = 18): LengthAwarePaginator
+    public function paginate(int $perPage = 18, array $filter = []): LengthAwarePaginator
     {
-        return Course::query()
+        $courseQuery = Course::query();
+
+        if (isset($filter['name'])) {
+            $courseQuery = $courseQuery->where('name', 'ilike', '%'.$filter['name'].'%');
+        }
+
+        return $courseQuery
             ->orderByDesc('id')
             ->paginate($perPage);
     }

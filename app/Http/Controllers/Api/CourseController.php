@@ -13,7 +13,10 @@ class CourseController extends ApiController
 {
     public function getList(Request $request)
     {
-        $courses = Course::getInstance()->paginate($request->input('perPage', 18));
+        $courses = Course::getInstance()->paginate(
+            $request->input('perPage', 18),
+            $request->input('filter', []),
+        );
         $this->meta = [
             ConstKeys::PER_PAGE => $courses->perPage(),
             ConstKeys::CURRENT_PAGE => $courses->currentPage(),
