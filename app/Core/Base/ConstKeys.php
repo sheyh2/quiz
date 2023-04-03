@@ -8,9 +8,9 @@ class ConstKeys
     const CODE = 'code';
     const STATUS = 'status';
     const MESSAGE = 'message';
-    const META = 'pageable';
+    const CONSTANTS = 'pageable';
     const ERRORS = 'errors';
-    const DATA = 'content';
+    const CONTENT = 'content';
     const PER_PAGE = 'per_page';
     const TOTAL_ITEMS = 'total_items';
     const CURRENT_PAGE = 'current_page';
