@@ -80,7 +80,8 @@ class Question extends Model
 
     public function answers(): HasMany
     {
-        return $this->hasMany(Answer::class, 'question_id', 'id');
+        return $this->hasMany(Answer::class, 'question_id', 'id')
+            ->orderBy('id');
     }
 
     // Getters

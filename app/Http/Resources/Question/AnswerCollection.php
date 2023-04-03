@@ -10,7 +10,8 @@ class AnswerCollection extends ResourceCollection
 {
     public function toArray($request): Collection
     {
-        return $this->collection->transform(function (Answer $answer) {
+
+        return $this->collection->transform(function ($answer) {
             return [
                 'id' => $answer->getId(),
                 'answer' => $answer->getAnswer(),
