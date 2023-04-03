@@ -29,7 +29,7 @@ class AbstractRequest extends FormRequest
             new JsonResponse([
                 ConstKeys::STATUS => false,
                 ConstKeys::CODE => 422,
-                ConstKeys::ERRORS => $validator->errors()->all(),ConstKeys::DATA => [],
+                ConstKeys::ERRORS => $validator->errors()->all(),ConstKeys::CONTENT => [],
             ], 422)
         );
     }

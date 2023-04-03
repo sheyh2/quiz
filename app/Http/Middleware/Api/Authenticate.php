@@ -23,7 +23,7 @@ class Authenticate
                 ConstKeys::STATUS => false,
                 ConstKeys::CODE => 401,
                 ConstKeys::ERRORS => ['Unauthorized'],
-                ConstKeys::DATA => []
+                ConstKeys::CONTENT => []
             ], 401));
         }
 
