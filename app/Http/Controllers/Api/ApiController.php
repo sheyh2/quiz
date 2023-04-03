@@ -8,7 +8,7 @@ use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
-class ApiController
+abstract class ApiController
 {
     public function __construct(Request $request)
     {

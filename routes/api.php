@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\CourseController;
 use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\LessonController;
+use App\Http\Controllers\Api\ProfileController;
 use App\Http\Controllers\Api\Question\QuestionController;
 use App\Http\Controllers\Api\QuizController;
 use App\Http\Controllers\Api\Result\ResultController;
@@ -17,6 +18,12 @@ Route::prefix('auth')->group(function (Router $router) {
 });
 
 Route::middleware('api.auth')->group(function () {
+    Route::prefix('profile')->group(function (Router $router) {
+        $router->get('get-me', [ProfileController::class, 'getMe']);
+        $router->put('change-info', [ProfileController::class, 'changeInfo']);
+        $router->put('change-password', [ProfileController::class, 'changePassword']);
+    });
+
     Route::prefix('course')->group(function (Router $router) {
         $router->get('/get-list', [CourseController::class, 'getList']);
         $router->get('/show/{id}', [CourseController::class, 'show']);
