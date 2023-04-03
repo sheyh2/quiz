@@ -37,7 +37,7 @@ class ApiController
             $data[ConstKeys::MESSAGE] = $this->message;
         }
         $data[ConstKeys::CONTENT] = $resource;
-        $data[ConstKeys::CONSTANTS] = $this->meta;
+        $data[ConstKeys::PAGEABLE] = $this->meta;
 
         return new JsonResponse($data, $this->code);
     }

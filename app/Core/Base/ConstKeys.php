@@ -8,7 +8,7 @@ class ConstKeys
     const CODE = 'code';
     const STATUS = 'status';
     const MESSAGE = 'message';
-    const CONSTANTS = 'pageable';
+    const PAGEABLE = 'pageable';
     const ERRORS = 'errors';
     const CONTENT = 'content';
     const PER_PAGE = 'per_page';
