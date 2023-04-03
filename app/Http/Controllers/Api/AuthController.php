@@ -26,7 +26,7 @@ class AuthController extends ApiController
         $user->update([
             'token' => sha1($user->getEmail())
         ]);
-        return $this->composeJson([['token' => $user->getToken()]]);
+        return $this->composeJson(['token' => $user->getToken()]);
     }
 
     public function signUp(SignUpRequest $request)
@@ -40,6 +40,6 @@ class AuthController extends ApiController
             'token' => sha1($request->input('email')),
         ]);
 
-        return $this->composeJson([['token' => $user->getToken()]]);
+        return $this->composeJson(['token' => $user->getToken()]);
     }
 }
