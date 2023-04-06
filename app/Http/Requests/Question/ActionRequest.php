@@ -24,7 +24,7 @@ class ActionRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'quizId' => 'required',
+            'quiz_id' => 'required',
             'question' => 'required',
             'answers' => 'required|array|min:2'
         ];

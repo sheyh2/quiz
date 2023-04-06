@@ -28,7 +28,7 @@ class ProfileController extends ApiController
 
     public function changePassword(ChangePasswordRequest $request)
     {
-        if (!Hash::check($request->input('oldPassword'), $this->user->getPassword())) {
+        if (!Hash::check($request->input('old_password'), $this->user->getPassword())) {
             $this->status = false;
             $this->code = 401;
             $this->message = 'Incorrect old password';

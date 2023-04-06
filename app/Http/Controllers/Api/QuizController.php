@@ -14,7 +14,7 @@ class QuizController extends ApiController
     public function getList(Request $request)
     {
         $quizzes = Quiz::getInstance()->paginate(
-            $request->input('perPage', 18),
+            $request->input('per_page', 18),
             $request->input('filter', []),
         );
 
@@ -47,9 +47,9 @@ class QuizController extends ApiController
     public function store(ActionRequest $request)
     {
         $quiz = Quiz::getInstance()->insertItem([
-            'lesson_id' => $request->input('lessonId'),
+            'lesson_id' => $request->input('lesson_id'),
             'name' => $request->input('name'),
-            'expired_time' => $request->input('expiredTime'),
+            'expired_time' => $request->input('expired_time'),
         ]);
 
         return $this->composeJson(new QuizResource($quiz));
@@ -70,7 +70,7 @@ class QuizController extends ApiController
         }
 
         $quizInstance->updateItem($quiz, [
-            'lesson_id' => $request->input('lessonId'),
+            'lesson_id' => $request->input('lesson_id'),
             'name' => $request->input('name'),
         ]);
 

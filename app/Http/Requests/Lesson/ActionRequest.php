@@ -24,7 +24,7 @@ class ActionRequest extends FormRequest
     public function rules()
     {
         return [
-            'courseId' => 'required',
+            'course_id' => 'required',
             'name' => 'required',
         ];
     }

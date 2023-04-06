@@ -13,7 +13,7 @@ class ResultController extends ApiController
     public function getList(Request $request)
     {
         $students = Result::getInstance()->paginate(
-            $request->input('perPage', 18),
+            $request->input('per_page', 18),
             $request->input('filter', []),
         );
 

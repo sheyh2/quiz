@@ -18,7 +18,7 @@ class LessonController extends ApiController
     {
         $lessons = Lesson::getInstance()
             ->paginate(
-                $request->input('perPage', 18),
+                $request->input('per_page', 18),
                 $request->input('filter', []),
             );
         $this->meta = [
@@ -51,7 +51,7 @@ class LessonController extends ApiController
     {
         $lessonInstance = Lesson::getInstance();
 
-        $duplicate = $lessonInstance->duplicate($request->input('courseId'), $request->input('name'));
+        $duplicate = $lessonInstance->duplicate($request->input('course_id'), $request->input('name'));
         if ($duplicate) {
             $this->status = false;
             $this->code = 409;
@@ -62,7 +62,7 @@ class LessonController extends ApiController
 
         $lesson = $lessonInstance->insertItem([
             'name' => $request->input('name'),
-            'course_id' => $request->input('courseId'),
+            'course_id' => $request->input('course_id'),
         ]);
 
         return $this->composeJson(new LessonResource($lesson));
@@ -82,7 +82,7 @@ class LessonController extends ApiController
             return $this->composeJson();
         }
 
-        $duplicate = $lessonInstance->duplicate($request->input('courseId'), $request->input('name'));
+        $duplicate = $lessonInstance->duplicate($request->input('course_id'), $request->input('name'));
         if ($duplicate) {
             $this->status = false;
             $this->code = 409;

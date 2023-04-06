@@ -18,7 +18,7 @@ class QuestionController extends ApiController
     public function getList(Request $request)
     {
         $quizzes = Question::getInstance()->paginate(
-            $request->input('perPage', 18),
+            $request->input('per_page', 18),
             $request->input('filter', []),
         );
 
@@ -55,7 +55,7 @@ class QuestionController extends ApiController
 
             /** @var Question $question */
             $question = Question::getInstance()->insertItem([
-                'quiz_id' => $request->input('quizId'),
+                'quiz_id' => $request->input('quiz_id'),
                 'question' => $request->input('question'),
             ]);
 
@@ -64,7 +64,7 @@ class QuestionController extends ApiController
                 $items[] = [
                     'question_id' => $question->getId(),
                     'answer' => $item['answer'],
-                    'is_correct' => $item['isCorrect'],
+                    'is_correct' => $item['is_correct'],
                 ];
             }
 
@@ -101,7 +101,7 @@ class QuestionController extends ApiController
             DB::beginTransaction();
 
             $questionInstance->updateItem($question, [
-                'quiz_id' => $request->input('quizId'),
+                'quiz_id' => $request->input('quiz_id'),
                 'question' => $request->input('question'),
             ]);
 
@@ -110,7 +110,7 @@ class QuestionController extends ApiController
                 $items[] = [
                     'question_id' => $question->getId(),
                     'answer' => $item['answer'],
-                    'is_correct' => $item['isCorrect'],
+                    'is_correct' => $item['is_correct'],
                 ];
             }
 

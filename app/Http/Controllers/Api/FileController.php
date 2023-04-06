@@ -35,10 +35,10 @@ class FileController extends ApiController
             /** @var File $file */
             $fileInstance = File::getInstance();
             $file = $fileInstance->insertItem([
-                'fileable_id' => $request->input('fileableId'),
-                'fileable_type' => $request->input('fileableType'),
-                'path' => $this->paths[$request->input('fileableType')],
-                'name' => uniqid($request->input('fileableType')),
+                'fileable_id' => $request->input('fileable_id'),
+                'fileable_type' => $request->input('fileable_type'),
+                'path' => $this->paths[$request->input('fileable_type')],
+                'name' => uniqid($request->input('fileable_type')),
                 'extension' => $uploadedFile->getClientOriginalExtension(),
                 'md5' => md5_file($uploadedFile),
             ]);

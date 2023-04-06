@@ -24,9 +24,9 @@ class ActionRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'lessonId' => 'required',
+            'lesson_id' => 'required',
             'name' => 'required',
-            'expiredTime' => 'required',
+            'expired_time' => 'required',
         ];
     }
 }

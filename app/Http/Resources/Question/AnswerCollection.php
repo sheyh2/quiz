@@ -15,7 +15,7 @@ class AnswerCollection extends ResourceCollection
             return [
                 'id' => $answer->getId(),
                 'answer' => $answer->getAnswer(),
-                'isCorrect' => $answer->isCorrect()
+                'is_correct' => $answer->isCorrect()
             ];
         });
     }

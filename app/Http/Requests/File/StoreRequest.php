@@ -24,8 +24,8 @@ class StoreRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'fileableId' => 'required',
-            'fileableType' => 'required',
+            'fileable_id' => 'required',
+            'fileable_type' => 'required',
             'file' => 'required|mimes:pdf,docx,xlsx,pptx,png',
         ];
     }

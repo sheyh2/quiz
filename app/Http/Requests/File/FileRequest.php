@@ -24,8 +24,8 @@ class FileRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'fileableId' => 'required',
-            'fileableType' => 'required'
+            'fileable_id' => 'required',
+            'fileable_type' => 'required'
         ];
     }
 }

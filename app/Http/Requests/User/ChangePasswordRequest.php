@@ -24,7 +24,7 @@ class ChangePasswordRequest extends AbstractRequest
     public function rules()
     {
         return [
-            'oldPassword' => 'required',
+            'old_password' => 'required',
             'password' => 'required|confirmed',
         ];
     }
